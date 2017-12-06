@@ -1,0 +1,43 @@
+// Colors
+$grey: #dddddd;
+$white: #ffffff;
+$blue-bt: #0097A7;
+$blue-hv: #00838F;
+$red-bt: #F44336;
+$red-hv: #E53935;
+$red-border: #D32F2F;
+$gray-bg: #ECEFF1;
+$dark-gray: #37474F;
+
+// Font sizes
+$base-font-size: 1.4rem;
+$large-font-size: 1.8rem;
+
+// Spacing
+$space: 1.4rem;
+$site-max-width: 50rem;
+
+// Boxed view
+$boxed-view-overlay-bg: $grey;
+$boxed-view-bg: $white;
+
+// Button
+$button-bg: $blue-bt;
+$button-hv: $blue-hv;
+$button-color: $white;
+$button-danger-bg: $red-bt;
+$button-danger-hv: $red-hv;
+$button-danger-border: $red-border;
+
+// Form inputs
+$input-border: $grey;
+$input-spacing: 1rem;
+
+// Header
+$header-bg: $blue-bt;
+$header-color: $white;
+
+// Item
+$item-bg: $gray-bg;
+$item-border: darken($gray-bg, 10%);
+$item-text-color: $dark-gray;
