@@ -2,25 +2,39 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
+import { withTracker } from 'meteor/react-meteor-data'
+import PropTypes from 'prop-types'
 
-class Signup extends Component {
-  constructor () {
+export class Signup extends Component {
+  constructor (props) {
     super()
     this.state = {
+      email: '',
+      password: '',
       error: '',
       user: {}
     }
 
+    this.handleEmail = (e) => {
+      const email = e.target.value
+      this.setState({ email })
+    }
+
+    this.handlePassword = (e) => {
+      const password = e.target.value
+      this.setState({ password })
+    }
+
     this.handleSubmit = (e) => {
       e.preventDefault()
-      const email = e.target.email.value
-      const password = e.target.password.value
+      const email = this.state.email
+      const password = this.state.password
 
       if (password.length < 8) {
         return this.setState({ error: 'Password must contain at least 8 characters long' })
       }
 
-      Accounts.createUser({ email, password }, (error) => {
+      props.createUser({ email, password }, (error) => {
         if (error) {
           this.setState({
             error: error.reason
@@ -47,8 +61,20 @@ class Signup extends Component {
             }
           </div>
           <form className='boxed-view__form' onSubmit={this.handleSubmit} noValidate>
-            <input type='email' name='email' placeholder='Email' />
-            <input type='password' name='password' placeholder='Password' />
+            <input
+              type='email'
+              name='email'
+              placeholder='Email'
+              value={this.state.email}
+              onChange={this.handleEmail}
+            />
+            <input
+              type='password'
+              name='password'
+              placeholder='Password'
+              value={this.state.password}
+              onChange={this.handlePassword}
+            />
             <button className='button' type='submit'>Create account</button>
           </form>
           <Link to='/'>Have an account?</Link>
@@ -58,4 +84,12 @@ class Signup extends Component {
   }
 }
 
-export default Signup
+Signup.propTypes = {
+  createUser: PropTypes.func.isRequired
+}
+
+export default withTracker((props) => {
+  return {
+    createUser: Accounts.createUser
+  }
+})(Signup)

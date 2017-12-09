@@ -1,21 +1,35 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import { Meteor } from 'meteor/meteor'
+import { withTracker } from 'meteor/react-meteor-data'
+import PropTypes from 'prop-types'
 
-class Login extends Component {
-  constructor () {
+export class Login extends PureComponent {
+  constructor (props) {
     super()
     this.state = {
+      email: '',
+      password: '',
       error: '',
       user: {}
     }
 
-    this.handleSubmit = (e) => {
-      const email = e.target.email.value
-      const password = e.target.password.value
+    this.handleEmail = (e) => {
+      const email = e.target.value
+      this.setState({ email })
+    }
 
+    this.handlePassword = (e) => {
+      const password = e.target.value
+      this.setState({ password })
+    }
+
+    this.handleSubmit = (e) => {
       e.preventDefault()
-      Meteor.loginWithPassword({ email }, password, (error) => {
+      const email = this.state.email
+      const password = this.state.password
+
+      props.loginWithPassword({ email }, password, (error) => {
         if (error) {
           this.setState({
             error: 'Unable to login. Please check email and password'
@@ -30,7 +44,7 @@ class Login extends Component {
     }
 
     this.loginWithGoogle = () => {
-      Meteor.loginWithGoogle({
+      this.props.loginWithGoogle({
         requestPermissions: ['email']
       }, (error) => {
         if (error) {
@@ -40,7 +54,7 @@ class Login extends Component {
         } else {
           this.setState({
             user: Meteor.user(),
-            error: ''
+            error: 'teste'
           })
         }
       })
@@ -69,8 +83,20 @@ class Login extends Component {
           </button>
           <h5>or</h5>
           <form className='boxed-view__form' onSubmit={this.handleSubmit} noValidate>
-            <input type='email' name='email' placeholder='Email' />
-            <input type='password' name='password' placeholder='Password' />
+            <input
+              type='email'
+              name='email'
+              placeholder='Email'
+              value={this.state.email}
+              onChange={this.handleEmail}
+            />
+            <input
+              type='password'
+              name='password'
+              placeholder='Password'
+              value={this.state.password}
+              onChange={this.handlePassword}
+            />
             <button className='button' type='submit'>Login</button>
           </form>
           <Link to='/signup'>Don't have an account?</Link>
@@ -80,4 +106,14 @@ class Login extends Component {
   }
 }
 
-export default Login
+Login.propTypes = {
+  loginWithPassword: PropTypes.func.isRequired,
+  loginWithGoogle: PropTypes.func.isRequired
+}
+
+export default withTracker((props) => {
+  return {
+    loginWithPassword: Meteor.loginWithPassword,
+    loginWithGoogle: Meteor.loginWithGoogle
+  }
+})(Login)

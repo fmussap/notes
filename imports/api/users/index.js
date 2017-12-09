@@ -1,7 +1,8 @@
 import { Accounts } from 'meteor/accounts-base'
+import { Meteor } from 'meteor/meteor'
 import SimpleSchema from 'simpl-schema'
 
-Accounts.validateNewUser((user) => {
+export const validateNewUser = (user) => {
   if (user.emails) {
     const email = user.emails[0].address
     const newUser = new SimpleSchema({
@@ -14,4 +15,8 @@ Accounts.validateNewUser((user) => {
     newUser.validate({ email })
   }
   return true
-})
+}
+
+if (Meteor.isServer) {
+  Accounts.validateNewUser(validateNewUser)
+}

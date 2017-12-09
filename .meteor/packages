@@ -22,3 +22,6 @@ accounts-google
 service-configuration
 session
 fourseven:scss
+practicalmeteor:mocha@2.4.5_6
+coffeescript@1.12.7_3
+react-meteor-data
