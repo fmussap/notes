@@ -2,7 +2,7 @@
 
 A simple note app created with **Meteor** and **ReactJs**.
 
-** work in progress **
+**work in progress**
 
 To install it:
 1) Clone this repo;
