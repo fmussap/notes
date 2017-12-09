@@ -1,6 +1,8 @@
-# A Meteor Boilerplate
+# An Note App
 
-A base react and auth setup with **Meteor** and **ReactJs**.
+A simple note app created with **Meteor** and **ReactJs**.
+
+** work in progress **
 
 To install it:
 1) Clone this repo;

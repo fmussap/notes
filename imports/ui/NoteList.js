@@ -4,11 +4,23 @@ import { Meteor } from 'meteor/meteor'
 import PropTypes from 'prop-types'
 
 import { Notes } from '../api/notes'
+import NoteListHeader from './NoteListHeader'
+import NoteListItem from './NoteListItem'
+
 export class NoteList extends PureComponent {
+  renderList () {
+    return this.props.notes.map((note) => {
+      // console.log('notem', note)
+      return (
+        <NoteListItem note={note} key={note._id} />
+      )
+    })
+  }
   render () {
     return (
       <div>
-        NoteList {this.props.notes.length}
+        <NoteListHeader />
+        {this.renderList()}
       </div>
     )
   }
