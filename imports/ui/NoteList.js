@@ -6,9 +6,14 @@ import PropTypes from 'prop-types'
 import { Notes } from '../api/notes'
 import NoteListHeader from './NoteListHeader'
 import NoteListItem from './NoteListItem'
+import NoteListEmptyItem from './NoteListEmptyItem'
 
 export class NoteList extends PureComponent {
   renderList () {
+    if (this.props.notes.length < 1) {
+      return <NoteListEmptyItem />
+    }
+
     return this.props.notes.map((note) => {
       // console.log('notem', note)
       return (
