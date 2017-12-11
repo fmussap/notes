@@ -12,6 +12,9 @@ const history = createBrowserHistory()
 Tracker.autorun(() => {
   const isAuthenticated = !!Meteor.userId()
   onAuthChange(isAuthenticated)
+  if (!isAuthenticated) {
+    Session.set('selectedNoteId', undefined)
+  }
 })
 
 Tracker.autorun(() => {

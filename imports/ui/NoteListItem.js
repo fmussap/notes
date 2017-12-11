@@ -14,10 +14,11 @@ export class NoteListItem extends PureComponent {
   }
 
   render () {
-    const { title, updatedAt } = { ...this.props.note }
+    const { title, updatedAt, selected } = { ...this.props.note }
     return (
       <div onClick={this.handleClick}>
         <h5>{title || 'Untitled note'}</h5>
+        {selected ? 'selected' : 'not selected'}
         <p>{moment(updatedAt).format('DD/M/YY')}</p>
       </div>
     )

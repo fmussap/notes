@@ -17,12 +17,13 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized')
     }
 
-    return Notes.insert({
+    const id = Notes.insert({
       title: '',
       body: '',
       userId: this.userId,
       updatedAt: moment().valueOf()
     })
+    return id
   },
   'notes.remove' (_id) {
     if (!this.userId) {

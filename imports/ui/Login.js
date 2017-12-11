@@ -54,7 +54,7 @@ export class Login extends PureComponent {
         } else {
           this.setState({
             user: Meteor.user(),
-            error: 'teste'
+            error: ''
           })
         }
       })

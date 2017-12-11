@@ -14,7 +14,18 @@ const authenticatedPages = ['/dashboard']
 export const onAuthChange = (isAuthenticated) => {
   const pathname = history.location.pathname
   const isUnauthenticatedPage = unauthenticatedPages.includes(pathname)
-  const isAuthenticatedPage = authenticatedPages.includes(pathname)
+  // const isAuthenticatedPage = authenticatedPages.includes(pathname)
+  // const isAuthenticatedPage2 = /^(\/dashboard)/.test(pathname)
+  const isAuthenticatedPage = authenticatedPages.some((page) => {
+    const path = `^(\\${page})`
+    const regex = new RegExp(path)
+    return regex.test(pathname)
+  })
+  // const isAuthenticatedPage = /[^(dashboard)]/.test(pathname)
+
+  // console.log('isUnauthenticatedPage', isUnauthenticatedPage)
+  // console.log('isAuthenticatedPage', isAuthenticatedPage2)
+  // console.log('isAuthenticated', isAuthenticated)
 
   if (isUnauthenticatedPage && isAuthenticated) {
     history.replace('/dashboard')
@@ -29,7 +40,7 @@ export const routes = (
       <Switch>
         <Route exact path='/' component={Login} />
         <Route path='/signup' component={Signup} />
-        <Route path='/dashboard' component={Dashboard} />
+        <Route exact path='/dashboard' component={Dashboard} />
         <Route path='/dashboard/:id' component={Dashboard} />
         <Route component={NotFound} />
       </Switch>

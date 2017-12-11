@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { withTracker } from 'meteor/react-meteor-data'
 import { Meteor } from 'meteor/meteor'
+import { Session } from 'meteor/session'
 import PropTypes from 'prop-types'
 
 export class NoteListHeader extends PureComponent {
@@ -8,7 +9,11 @@ export class NoteListHeader extends PureComponent {
     super()
 
     this.handleClick = () => {
-      props.meteorCall('notes.insert')
+      props.meteorCall('notes.insert', (err, id) => {
+        if (!err) {
+          Session.set('selectedNoteId', id)
+        }
+      })
     }
   }
   render () {
