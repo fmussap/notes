@@ -1,19 +1,36 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
+import { withTracker } from 'meteor/react-meteor-data'
 import moment from 'moment'
 import PropTypes from 'prop-types'
+import { Session } from 'meteor/session'
 
-const NoteListItem = (props) => {
-  const { title, updatedAt } = { ...props.note }
-  return (
-    <div>
-      <h5>{title || 'Untitled note'}</h5>
-      <p>{moment(updatedAt).format('DD/M/YY')}</p>
-    </div>
-  )
+export class NoteListItem extends PureComponent {
+  constructor () {
+    super()
+
+    this.handleClick = () => {
+      this.props.Session.set('selectedNoteId', this.props.note._id)
+    }
+  }
+
+  render () {
+    const { title, updatedAt } = { ...this.props.note }
+    return (
+      <div onClick={this.handleClick}>
+        <h5>{title || 'Untitled note'}</h5>
+        <p>{moment(updatedAt).format('DD/M/YY')}</p>
+      </div>
+    )
+  }
 }
 
 NoteListItem.propTypes = {
-  note: PropTypes.object.isRequired
+  note: PropTypes.object.isRequired,
+  Session: PropTypes.object.isRequired
 }
 
-export default NoteListItem
+export default withTracker((props) => {
+  return {
+    Session
+  }
+})(NoteListItem)
