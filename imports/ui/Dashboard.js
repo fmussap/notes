@@ -13,7 +13,7 @@ const Dashboard = (props) => {
   }
   return (
     <div>
-      <Header title='Dashboard' />
+      <Header title='Notes' />
       <div className='page-content'>
         <div className='page-content__sidebar'>
           <NotesList />
