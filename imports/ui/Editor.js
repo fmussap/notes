@@ -82,7 +82,8 @@ export class Editor extends PureComponent {
 Editor.propTypes = {
   selectedNoteId: PropTypes.string,
   note: PropTypes.object,
-  call: PropTypes.func.isRequired
+  call: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default withTracker((props) => {
@@ -90,6 +91,7 @@ export default withTracker((props) => {
   return {
     selectedNoteId,
     note: Notes.findOne(selectedNoteId),
-    call: Meteor.call
+    call: Meteor.call,
+    history: props.history
   }
 })(withRouter(Editor))
