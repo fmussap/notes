@@ -71,7 +71,7 @@ export class Login extends PureComponent {
     return (
       <div className='boxed-view'>
         <div className='boxed-view__box'>
-          <h1>Login</h1>
+          <h1>Notes</h1>
           <div className='error-message'>
             {this.state.error
               ? <p>{this.state.error}</p>

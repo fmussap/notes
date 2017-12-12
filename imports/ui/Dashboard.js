@@ -15,8 +15,12 @@ const Dashboard = (props) => {
     <div>
       <Header title='Dashboard' />
       <div className='page-content'>
-        <NotesList />
-        <Editor />
+        <div className='page-content__sidebar'>
+          <NotesList />
+        </div>
+        <div className='page-content__main' >
+          <Editor />
+        </div>
       </div>
     </div>
   )

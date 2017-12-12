@@ -6,20 +6,25 @@ $blue-hv: #00838F;
 $red-bt: #F44336;
 $red-hv: #E53935;
 $red-border: #D32F2F;
-$gray-bg: #ECEFF1;
-$dark-gray: #37474F;
+$grey-bg: #ECEFF1;
+$dark-grey: #37474F;
+$body-background-color: $grey-bg;
+$body-default-color: #333333;
 
 // Font sizes
 $base-font-size: 1.4rem;
-$large-font-size: 1.8rem;
+$large-font-size: 2.2rem;
+$body-default-font-family: Helvetica, Arial, sans-serif;
 
 // Spacing
+$large-space: 2.8rem;
 $space: 1.4rem;
-$site-max-width: 50rem;
+$site-max-width: 100rem;
 
 // Boxed view
 $boxed-view-overlay-bg: $grey;
 $boxed-view-bg: $white;
+$boxed-view-border-color: $grey;
 
 // Button
 $button-bg: $blue-bt;
@@ -36,8 +41,12 @@ $input-spacing: 1rem;
 // Header
 $header-bg: $blue-bt;
 $header-color: $white;
+$header-height: 6rem;
 
 // Item
-$item-bg: $gray-bg;
-$item-border: darken($gray-bg, 10%);
-$item-text-color: $dark-gray;
+$item-bg: $grey-bg;
+$item-border: darken($grey-bg, 10%);
+$item-text-color: $dark-grey;
+
+// page-content
+$page-content-heigth: calc(100vh - #{$header-height})

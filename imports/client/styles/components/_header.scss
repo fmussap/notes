@@ -1,15 +1,16 @@
 .header {
   background-color: $header-bg;
-  color: $header-color;
   box-shadow: 2px 4px 2px -2px gray;
+  color: $header-color;
 }
 
 .header__content {
   align-items: center;
   display: flex;
+  height: $header-height;
   justify-content: space-between;
-  max-width: $site-max-width;
   margin: 0 auto;
+  max-width: $site-max-width;
   padding: $space;
 }
 

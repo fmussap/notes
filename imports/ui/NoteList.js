@@ -24,7 +24,7 @@ export class NoteList extends PureComponent {
   }
   render () {
     return (
-      <div>
+      <div className='item-list'>
         <NoteListHeader />
         {this.renderList()}
       </div>

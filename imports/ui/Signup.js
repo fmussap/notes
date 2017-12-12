@@ -53,7 +53,7 @@ export class Signup extends Component {
     return (
       <div className='boxed-view'>
         <div className='boxed-view__box'>
-          <h1>Join</h1>
+          <h1>Join Notes</h1>
           <div className='error-message'>
             {this.state.error
               ? <p>{this.state.error}</p>

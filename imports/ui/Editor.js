@@ -55,26 +55,35 @@ export class Editor extends PureComponent {
   render () {
     if (this.props.note) {
       return (
-        <div>
-          <input
+        <div className='editor'>
+          <input className='editor__title'
             value={this.state.title}
             placeholder='Your title here'
             onChange={this.handleInput}
           />
           <textarea
+            className='editor__body'
             value={this.state.body}
             placeholder='Your note here'
             onChange={this.handleTextArea}
-          >
-          </textarea>
-          <button onClick={this.handleClick}>Delete note</button>
+          />
+          <div>
+            <button
+              className='button button--danger'
+              onClick={this.handleClick}
+            >
+            Delete note
+            </button>
+          </div>
         </div>
       )
     }
     return (
-      <p>
-        {this.props.selectedNoteId ? 'Note not found' : 'Pick or create a note'}
-      </p>
+      <div className='editor'>
+        <p className='editor__message'>
+          {this.props.selectedNoteId ? 'Note not found' : 'Pick or create a note'}
+        </p>
+      </div>
     )
   }
 }
