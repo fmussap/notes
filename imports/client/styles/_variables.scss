@@ -46,7 +46,9 @@ $header-height: 6rem;
 // Item
 $item-bg: $grey-bg;
 $item-border: darken($grey-bg, 10%);
+$item-border-width: 4px;
 $item-text-color: $dark-grey;
+$item-border-select: #B2EBF2;
 
 // page-content
 $page-content-heigth: calc(100vh - #{$header-height})

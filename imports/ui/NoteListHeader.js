@@ -18,7 +18,7 @@ export class NoteListHeader extends PureComponent {
   }
   render () {
     return (
-      <div>
+      <div className='item-list__header'>
         <button className='button' onClick={this.handleClick}>
           Create note
         </button>

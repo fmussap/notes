@@ -15,11 +15,11 @@ export class NoteListItem extends PureComponent {
 
   render () {
     const { title, updatedAt, selected } = { ...this.props.note }
+    const className = selected ? 'item item--selected' : 'item'
     return (
-      <div onClick={this.handleClick}>
-        <h5>{title || 'Untitled note'}</h5>
-        {selected ? 'selected' : 'not selected'}
-        <p>{moment(updatedAt).format('DD/M/YY')}</p>
+      <div className={className} onClick={this.handleClick}>
+        <h5 className='item__title'>{title || 'Untitled note'}</h5>
+        <p className='item__date'>{moment(updatedAt).format('DD/M/YY')}</p>
       </div>
     )
   }
