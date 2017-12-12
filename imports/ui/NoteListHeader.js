@@ -11,7 +11,7 @@ export class NoteListHeader extends PureComponent {
     this.handleClick = () => {
       props.meteorCall('notes.insert', (err, id) => {
         if (!err) {
-          Session.set('selectedNoteId', id)
+          props.Session.set('selectedNoteId', id)
         }
       })
     }
@@ -28,12 +28,14 @@ export class NoteListHeader extends PureComponent {
 }
 
 NoteListHeader.propTypes = {
-  meteorCall: PropTypes.func.isRequired
+  meteorCall: PropTypes.func.isRequired,
+  Session: PropTypes.object.isRequired
 }
 
 export default withTracker((props) => {
   Meteor.subscribe('notes')
   return {
-    meteorCall: Meteor.call
+    meteorCall: Meteor.call,
+    Session: Session
   }
 })(NoteListHeader)
